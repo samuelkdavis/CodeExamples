@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "got": "^14.4.2"
+  }
+}
