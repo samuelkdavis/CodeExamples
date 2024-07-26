@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:8080:8080'
+      # ports have to be the same otherwise webUI throws a 'qbittorrent client is not reachable'
+      # https://discourse.linuxserver.io/t/cant-access-qbittorrent-docker-webui/469/2
+      - '0.0.0.0:50009:50009'
+      # - '0.0.0.0:50009:50009/udp' specifying the udp tag may have prevented the downloads occasionally - 2023-12-29
+    environment:
+      - PUID=1000 # run as a user, not root
+      - PGID=1000
+      - UMASK=002
+      - TZ=Etc/NZST
+    volumes:
+      - '/mnt/c/dev/servarr/qbittorrent/config:/config'
+      - '/mnt/x:/data'
+      - '/mnt/y:/data-y'
+      - '/mnt/z:/data-z'
+    image: ghcr.io/hotio/qbittorrent:release-4.6.2
