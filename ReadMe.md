@@ -14,4 +14,4 @@
 * XPath examples
 * CSS Selector examples
 * Typescript tsconfig
-* editorconfig
+* Simplest C# Project (no main method)
